@@ -132,7 +132,7 @@ Sonic.right()
 Sonic.forward(5)
 Sonic.right()
 Sonic.forward(5)
-Sonic.Print()
+Sonic.print()
 
 
  
