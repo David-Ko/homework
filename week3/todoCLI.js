@@ -6,14 +6,36 @@ const rl = readline.createInterface({
     output: process.stdout
 });
 
-rl.question(
-    `Welcome to ToDo CLI!\n--------------------\n(v) View ∙ (n) New ∙ (cX) Complete ∙ (dX) Delete ∙ (q) Quit\n>`, 
-    ()=>{
-        console.log(`Sorry, code isn't written yet. Check later.`)
+function userInput(answer){
+    if (answer === 'v'){
+        console.log(`you're viewing your list`);
+        rl.close();
+    } else if (answer === 'n'){
+        console.log(`you're adding a new to-do item`);
+        rl.close();
+    } else if (answer === 'cX') {
+        console.log(`you're completing a task`);
+        rl.close();
+    } else if (answer === 'dX') {
+        console.log(`you're deleting a task`);
+        rl.close();
+    } else if (answer === 'q'){
+        console.log(`you're quiting this program`);
+        rl.close();
+    } else {
+        console.log(`you must enter one of the following: v, n, cX, dX, q`);
         rl.close();
     }
+}
 
-);
+rl.question(
+    `Welcome to ToDo CLI!\n--------------------\n(v) View ∙ (n) New ∙ (cX) Complete ∙ (dX) Delete ∙ (q) Quit\n>`, 
+    userInput);//=>{
+    //     console.log(`Sorry, code isn't written yet. Check later.`)
+    //     rl.close();
+    // }
+// );
+
 //The above is just to create a general/barebone structure
 //of the code.  This is just to build something, so that
 //I can see the "main page" of todoCLI.js asking a user to
