@@ -60,13 +60,23 @@ function addNewItem (y){
 }
 
 function completeItem (answer) {
-        myStuff[answer[1]][0] = true;
-        console.log(`Completed "${myStuff[answer[1]][1]}"`)
-        menu();
+    let y = '';
+    for (let i = 1; i<answer.length; i++){
+        y += answer[i]
+    }
+
+    myStuff[y][0] = true;
+    console.log(`Completed "${myStuff[y][1]}"`)
+    menu();
 }
 
 function deleteItem (answer) {
-    let x = myStuff.splice(answer[1],1) //this deletes the task and UPDATES your list
+        let y = '';
+        for (let i = 1; i<answer.length; i++){
+            y += answer[i]
+        }
+
+        let x = myStuff.splice(y,1) //this deletes the task and UPDATES your list
         console.log(`Deleted "${x[0][1]}"`);
         menu();
 }
