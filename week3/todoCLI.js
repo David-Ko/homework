@@ -1,4 +1,3 @@
-const fs = require('fs');
 const readline = require('readline');
 
 const rl = readline.createInterface({
@@ -6,35 +5,62 @@ const rl = readline.createInterface({
     output: process.stdout
 });
 
+let myStuff = [];
 function userInput(answer){
+    
     if (answer === 'v'){
-        console.log(`you're viewing your list`);
-        rl.close();
+        viewList();
     } else if (answer === 'n'){
-        console.log(`you're adding a new to-do item`);
-        rl.close();
-    } else if (answer === 'cX') {
-        console.log(`you're completing a task`);
-        rl.close();
-    } else if (answer === 'dX') {
-        console.log(`you're deleting a task`);
-        rl.close();
+        addNewItem();
+    } else if (answer[0] === 'c') {
+        myStuff[answer[1]][0] = true;
+        console.log(`Completed "${myStuff[answer[1]][1]}"`)
+        menu();
+    } else if (answer[0] === 'd') {
+        let x = myStuff.splice(answer[1],1) //this deletes the task and UPDATES your list
+        console.log(`Deleted "${x[0][1]}"`);
+        menu();
     } else if (answer === 'q'){
-        console.log(`you're quiting this program`);
-        rl.close();
+        quitList();
     } else {
-        console.log(`you must enter one of the following: v, n, cX, dX, q`);
-        rl.close();
+        console.log(`You must enter one of the following: v, n, cX, dX, q`);
+        menu();
     }
 }
 
-rl.question(
+function menu () {rl.question(
     `Welcome to ToDo CLI!\n--------------------\n(v) View ∙ (n) New ∙ (cX) Complete ∙ (dX) Delete ∙ (q) Quit\n>`, 
-    userInput);//=>{
-    //     console.log(`Sorry, code isn't written yet. Check later.`)
-    //     rl.close();
-    // }
-// );
+    userInput)};
+    menu();
+
+function viewList (){
+    console.log(`You're viewing your to-do list`);
+    if (myStuff.length === 0) {
+         console.log('but your to-do list is empty')
+    } else {
+    for (let i = 0; i < myStuff.length; i++){
+            if (myStuff[i][0] === false) {
+                console.log (`${i}  [ ] ${myStuff[i][1]}`)
+                } else if (myStuff[i][0] === true) {
+                    console.log(`${i}  [✓] ${myStuff[i][1]}`)
+           }
+        }
+    };
+    menu();
+}
+
+function addNewItem (y){
+    console.log(`you're adding a new to-do item`);
+    rl.question(`What task would you like to add?\n`, answer =>{
+        myStuff.push([false, answer]);
+        menu();
+    });
+}
+
+function quitList (){
+    console.log(`See you soon! 😄`);
+    rl.close();
+}
 
 //The above is just to create a general/barebone structure
 //of the code.  This is just to build something, so that
@@ -42,7 +68,7 @@ rl.question(
 //choose from the v, n, cX, dX and q options.
 
 /**
- * MY  PROPOSED  ALGORITHM
+ * MY  PROPOSED  ALGORITHM - Nov 23, 2018
  * step 1 - create a general/barebone structure to show the 
  *          interface as soon as todoCLI.js is run in the terminal.
  * step 2 - In the callback function of rl.question(), call 
@@ -56,3 +82,10 @@ rl.question(
  *          delete--> fs.unlink, rl.close()
  *          quit -->  rl.close()
  */
+
+ /** Nov 25, 2018
+  * I realized I started coding for the "stretch" homework.
+  * So, I decided to rewrite my code for the "non-stretch" homework first.
+  * I will tackle the "stretch" homework later.
+  * 
+  */
