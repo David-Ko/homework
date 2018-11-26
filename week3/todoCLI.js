@@ -13,13 +13,15 @@ function userInput(answer){
     } else if (answer === 'n'){
         addNewItem();
     } else if (answer[0] === 'c') {
-        myStuff[answer[1]][0] = true;
-        console.log(`Completed "${myStuff[answer[1]][1]}"`)
-        menu();
+        completeItem(answer);
+        // myStuff[answer[1]][0] = true;
+        // console.log(`Completed "${myStuff[answer[1]][1]}"`)
+        // menu();
     } else if (answer[0] === 'd') {
-        let x = myStuff.splice(answer[1],1) //this deletes the task and UPDATES your list
-        console.log(`Deleted "${x[0][1]}"`);
-        menu();
+        deleteItem(answer);
+        // let x = myStuff.splice(answer[1],1) //this deletes the task and UPDATES your list
+        // console.log(`Deleted "${x[0][1]}"`);
+        // menu();
     } else if (answer === 'q'){
         quitList();
     } else {
@@ -55,6 +57,18 @@ function addNewItem (y){
         myStuff.push([false, answer]);
         menu();
     });
+}
+
+function completeItem (answer) {
+        myStuff[answer[1]][0] = true;
+        console.log(`Completed "${myStuff[answer[1]][1]}"`)
+        menu();
+}
+
+function deleteItem (answer) {
+    let x = myStuff.splice(answer[1],1) //this deletes the task and UPDATES your list
+        console.log(`Deleted "${x[0][1]}"`);
+        menu();
 }
 
 function quitList (){
