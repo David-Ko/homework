@@ -1,34 +1,27 @@
 const readline = require('readline');
-
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
 
-let myStuff = [];
+let myStuff = []; 
+//The above "myStuff" array will be storing the todo's that a user enters.
 function userInput(answer){
-    
     if (answer === 'v'){
         viewList();
     } else if (answer === 'n'){
         addNewItem();
     } else if (answer[0] === 'c') {
         completeItem(answer);
-        // myStuff[answer[1]][0] = true;
-        // console.log(`Completed "${myStuff[answer[1]][1]}"`)
-        // menu();
     } else if (answer[0] === 'd') {
         deleteItem(answer);
-        // let x = myStuff.splice(answer[1],1) //this deletes the task and UPDATES your list
-        // console.log(`Deleted "${x[0][1]}"`);
-        // menu();
     } else if (answer === 'q'){
         quitList();
     } else {
-        console.log(`You must enter one of the following: v, n, cX, dX, q`);
+        console.log(`You must enter one of the following: v, n, cX (where X is a number), dX (where X is a number), q`);
         menu();
-    }
-}
+    };
+};
 
 function menu () {rl.question(
     `Welcome to ToDo CLI!\n--------------------\n(v) View ∙ (n) New ∙ (cX) Complete ∙ (dX) Delete ∙ (q) Quit\n>`, 
@@ -49,43 +42,44 @@ function viewList (){
         }
     };
     menu();
-}
+};
 
-function addNewItem (y){
+function addNewItem (){
     console.log(`you're adding a new to-do item`);
     rl.question(`What task would you like to add?\n`, answer =>{
         myStuff.push([false, answer]);
         menu();
     });
-}
+};
 
 function completeItem (answer) {
-    let y = '';
+    let userInputNumber = '';
     for (let i = 1; i<answer.length; i++){
-        y += answer[i]
-    }
+        userInputNumber += answer[i]
+    };
 
-    myStuff[y][0] = true;
-    console.log(`Completed "${myStuff[y][1]}"`)
+    myStuff[userInputNumber][0] = true;
+    console.log(`Completed "${myStuff[userInputNumber][1]}"`)
     menu();
-}
+};
 
 function deleteItem (answer) {
-        let y = '';
+        let userInputNumber = '';
         for (let i = 1; i<answer.length; i++){
-            y += answer[i]
-        }
+            userInputNumber += answer[i]
+        };
 
-        let x = myStuff.splice(y,1) //this deletes the task and UPDATES your list
-        console.log(`Deleted "${x[0][1]}"`);
+        let itemToDelete = myStuff.splice(userInputNumber,1) 
+        console.log(`Deleted "${itemToDelete[0][1]}"`);
         menu();
-}
+};
 
 function quitList (){
     console.log(`See you soon! 😄`);
     rl.close();
-}
+};
 
+//Nov 23, 2018
 //The above is just to create a general/barebone structure
 //of the code.  This is just to build something, so that
 //I can see the "main page" of todoCLI.js asking a user to
@@ -112,4 +106,10 @@ function quitList (){
   * So, I decided to rewrite my code for the "non-stretch" homework first.
   * I will tackle the "stretch" homework later.
   * 
+  * 
+  * 
+  ** Nov 30, 2018
+  *  I cleaned up my code by deleting unneccesary comments and empty spaces.
+  *  I cleaned up my code by indenting properly.
+  *  I cleaned up my code by naming my variable with meaningful word choices.
   */
