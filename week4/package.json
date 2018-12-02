@@ -1,0 +1,21 @@
+{
+  "name": "super_team_picker",
+  "version": "0.0.1",
+  "description": "super team picker",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "David Ko",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "knex": "^0.15.2",
+    "morgan": "^1.9.1",
+    "pg": "^7.7.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.7"
+  }
+}
