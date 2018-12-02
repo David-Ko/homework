@@ -2,14 +2,16 @@ const express = require("express");
 const app = express();
 const logger = require("morgan");
 app.use(logger("dev"));
-app.set("views engine", "ejs");
+app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true}))
 
 
-
-app.get("/", (req, res)=>{
-    res.send('HI')
-});
+const baseRouter = require('./routes/base.js');
+app.use('/', baseRouter);
+//The above two lines REPLACED the three lines below, because of router
+// app.get("/", (req, res)=>{
+//     res.render('homePage')
+// });
 
 
 
