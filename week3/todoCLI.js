@@ -68,7 +68,7 @@ function deleteItem (answer) {
         for (let i = 1; i<answer.length; i++){
             userInputNumber += answer[i]
         };
-
+        // let userInputNumber = answer.slice(1)
         let itemToDelete = myStuff.splice(userInputNumber,1) 
         console.log(`Deleted "${itemToDelete[0][1]}"`);
         menu();
