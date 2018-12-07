@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const knex = require("../db/client") //HELLO??? You're using knext below!  So, you MUST require it
+const knex = require("../db/client") 
 
 router.get('/new', (req, res)=>{
     res.render('new')
@@ -23,11 +23,9 @@ router.post('/', (req, res)=>{
         .then((cohorts)=>{
             console.log(cohorts);
             const [cohort] = cohorts;
-            // res.redirect(`/cohorts/${cohort.id}`)
-            res.redirect(`/cohorts/${cohort.id}`) //must be EXPLICIT!
+            res.redirect(`/cohorts/${cohort.id}`)
         })
 })
-
 
 router.get('/:id/form', (req, res)=>{
     const id = req.params.id;
@@ -36,133 +34,76 @@ router.get('/:id/form', (req, res)=>{
         .select("*")
         .from("cohorts")
         .where({ id: id })
-        .first() //forgot this too!!!!!!
-        .then((cohort)=>{ //forgot to pass an argument here!!!!!!!!!!!!!!!!!!!!!!!
+        .first() 
+        .then((cohort)=>{ 
             console.log(cohort);
             const method = req.query.method;
             const quantity = req.query.quantity;
             const members = cohort.members;
             
         
-function teamBuilder (strOfMembers, quantity, method){
+    function teamBuilder (strOfMembers, quantity, method){
     let names = strOfMembers.split(', ');
     let shuffledMembers = [];
-    while (names.length > 0 ){
-      random = Math.floor(Math.random()* names.length)
-      shuffledMembers.push(names.splice(random, 1)[0])
-    }
-  if (method === "numberPerTeam") {
-    let numOfTeamNeeded = Math.ceil(shuffledMembers.length/quantity)
-    let teamsArray = [];
-    for (let i = 0; i < numOfTeamNeeded; i++){
-      teamsArray.push([])
-    }   
-  
-    while (shuffledMembers.length > 0){
-      for (let i = 0; i < teamsArray.length; i++){
-        if (shuffledMembers.length > 0){
-          for (let j = 0; j < quantity; j++){
-            if(shuffledMembers.length > 0) {
-          teamsArray[i].push(shuffledMembers.pop())
-            } else {break}
-          }
-        } else {
-          break
+        
+        while (names.length > 0 ){
+            random = Math.floor(Math.random()* names.length)
+            shuffledMembers.push(names.splice(random, 1)[0])
         }
-      }
-    }
-    return teamsArray
-  }
-   
-  
-  if (method === "teamCount") {
-  
-    let teamsArray = [];
-    for (let i = 0; i < quantity; i++){
-      teamsArray.push([])
-    }   
+
+        if (method === "numberPerTeam") {
+            let numOfTeamNeeded = Math.ceil(shuffledMembers.length/quantity)
+            let teamsArray = [];
+            for (let i = 0; i < numOfTeamNeeded; i++){
+            teamsArray.push([])
+        }   
     
-    while (shuffledMembers.length > 0){
-      for (let i = 0; i < teamsArray.length; i++){
-        if (shuffledMembers.length > 0){
-          teamsArray[i].push(shuffledMembers.pop())
-        } else {
-          break
+        while (shuffledMembers.length > 0){
+            for (let i = 0; i < teamsArray.length; i++){
+                if (shuffledMembers.length > 0){
+                for (let j = 0; j < quantity; j++){
+                        if(shuffledMembers.length > 0) {
+                        teamsArray[i].push(shuffledMembers.pop())
+                        } else {break}
+                      }
+                    } else {
+                      break
+                    }
+                }
+            }
+        return teamsArray
         }
-      }
+    
+        if (method === "teamCount") {
+    
+        let teamsArray = [];
+            for (let i = 0; i < quantity; i++){
+                teamsArray.push([])
+            }   
+        
+            while (shuffledMembers.length > 0){
+            for (let i = 0; i < teamsArray.length; i++){
+                if (shuffledMembers.length > 0){
+                    teamsArray[i].push(shuffledMembers.pop())
+                    } else {
+                    break
+                    }
+                }
+            }
+        return teamsArray
     }
-    return teamsArray
-  }
 }
   let setTeams = teamBuilder(members, quantity, method)
 
-                 // function teamCount (strOfMembers, quantity){
-            //     let names = strOfMembers.split(', ');
-            //     let shuffledMembers = [];
-            //     while (names.length > 0){
-            //       random = Math.floor(Math.random()* names.length)
-            //       shuffledMembers.push(names.splice(random, 1)[0])
-            //     }
-                
-            //     let teamsArray = [];
-            //     for (let i = 0; i < quantity; i++){
-            //       teamsArray.push([])
-            //     }   
-                
-            //     while (shuffledMembers.length > 0){
-            //       for (let i = 0; i < teamsArray.length; i++){
-            //         if (shuffledMembers.length > 0){
-            //           teamsArray[i].push(shuffledMembers.pop())
-            //         } else {
-            //           break
-            //         }
-            //       }
-            //     }
-            //     return teamsArray
-            //   }   
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            res.render('show', { 
-                cohort:cohort,
-                method:method,  
-                quantity:quantity,
-                members: members,
-                setTeams: setTeams
-            })
-        })
-
-})
-
-
-
-
-
-
-
+        res.render('show', { 
+            cohort:cohort,
+            method:method,  
+            quantity:quantity,
+            members: members,
+            setTeams: setTeams
+        });
+    });
+});
 
 router.get('/:id', (req, res)=>{
     const id = req.params.id;
@@ -171,8 +112,8 @@ router.get('/:id', (req, res)=>{
         .select("*")
         .from("cohorts")
         .where({ id: id })
-        .first() //forgot this too!!!!!!
-        .then((cohort)=>{ //forgot to pass an argument here!!!!!!!!!!!!!!!!!!!!!!!
+        .first() 
+        .then((cohort)=>{ 
             console.log(cohort);
             const method = req.query.method;
             const quantity = req.query.quantity;
@@ -184,12 +125,8 @@ router.get('/:id', (req, res)=>{
                 quantity:quantity,
                 members: members,
                 setTeams: setTeams })
-        })
-
-    // const method = req.query.method;
-    // const quantity = req.query.quantity;
-
-})
+        });
+});
 
 router.get('/', (req, res)=>{
     knex
@@ -199,7 +136,7 @@ router.get('/', (req, res)=>{
         .then((cohorts)=>{
             res.render('index', {cohorts})
         });
-})
+});
 
 router.delete('/:id', (req, res)=>{
     const id = req.params.id
@@ -209,10 +146,9 @@ router.delete('/:id', (req, res)=>{
         .where({ id: id})
         .del()
         .then(()=>{
-            // res.render('index') //CANNOT res.render ...i dno't know why though
-            res.redirect('/cohorts')  //FORGOT TO require METHOD-OVERRIDE
-        })
-})
+            res.redirect('/cohorts')  
+        });
+});
 
 
 router.get('/:id/edit', (req, res)=>{
@@ -221,24 +157,14 @@ router.get('/:id/edit', (req, res)=>{
         .select("*")
         .from("cohorts")
         .where({ id: id})
-        // .returning("*")  //why not this?
         .first()
         .then((cohort)=>{
-            res.render('edit', {cohort}) //MISTAKE!  I used redirect
-        })
-})
+            res.render('edit', {cohort}) 
+        });
+});
 
 router.patch('/:id', (req, res)=>{
-    // const logoUrl = req.body.logoUrl
-    // const name = req.body.name
-    // const members = req.body.members
-
-    // const newUpdate = {
-    //     logoUrl: logoUrl,
-    //     name: name,
-    //     members: members
-    // }
-    const id = req.params.id  //MISTAKE!  Forgot to add this line
+    const id = req.params.id  
     knex
         .select("*")
         .from("cohorts")
@@ -249,9 +175,8 @@ router.patch('/:id', (req, res)=>{
             members: req.body.members
         })
         .then(()=>{
-            // res.render(`/cohorts/${cohort.id}`)
             res.redirect(`/cohorts/${req.params.id}`)
-        })
-})
+        });
+});
 
 module.exports = router
