@@ -1,4 +1,5 @@
-
+//Below is just a reference file for my teamBuilder function
+//This is embedded inside my cohorts.js file
 function teamBuilder (strOfMembers, quantity, method){
     let names = strOfMembers.split(', ');
     let shuffledMembers = [];
