@@ -4,7 +4,7 @@
   "description": "super team picker",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon app.js"
   },
   "author": "David Ko",
   "license": "ISC",
@@ -12,6 +12,7 @@
     "ejs": "^2.6.1",
     "express": "^4.16.4",
     "knex": "^0.15.2",
+    "method-override": "^3.0.0",
     "morgan": "^1.9.1",
     "pg": "^7.7.1"
   },
