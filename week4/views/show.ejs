@@ -2,21 +2,19 @@
 <div class="container border mt-3 p-3">
 
   <h3><%=cohort.name%></h3>
-
   <p> <%=cohort.members%> </p>
   <hr>
   <form action="/cohorts/<%= cohort.id %>/form" method = "get">
-  <label for="">Method (of your choice)</label><br>
-  <input type="radio" name="method" value = "teamCount">Team count!!<br>
-  <input type="radio" name="method" value = "numberPerTeam">Number per team!!
-  <br><br>
-  <label for="">Quantity</label><br>
-  <input type="text" name="quantity"><br>
-  <div class="form-group">
-  <input class="btn btn-primary btn-lg btn-block btn-outline-primary mt-3" type="submit" value = "Assign Team!!!">
-  </div>
+    <label for="">Method (of your choice)</label><br>
+    <input type="radio" name="method" value = "teamCount">Team count!!<br>
+    <input type="radio" name="method" value = "numberPerTeam">Number per team!!
+    <br><br>
+    <label for="">Quantity</label><br>
+    <input type="text" name="quantity"><br>
+    <div class="form-group">
+      <input class="btn btn-primary btn-lg btn-block btn-outline-primary mt-3" type="submit" value = "Assign Team!!!">
+    </div>
   </form>
-
 
   <%if (method && quantity) {%>
 
@@ -40,7 +38,6 @@
   </table>
   </div>
   <%}%>
-
 
   <form class="form-group" action="/cohorts/<%= cohort.id%>" method = "post">
       <input type="hidden" name="_method" value="DELETE" >
