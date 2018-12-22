@@ -1,0 +1,14 @@
+<div class="container-fluid">
+<%= form_with(model: @user, local: true) do |form|%>
+    <div class="form-group mt-3">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: "form-control" %>
+    </div>
+    <div class="form-group">
+    <%= form.label :email %>
+    <%= form.text_field :email, class: "form-control" %>
+    </div>
+    <%= form.submit "Update", class: "btn btn-outline-primary"%>
+    <%= link_to("Change Password", edit_password_path(@user.id))%>
+<% end %>
+</div>
