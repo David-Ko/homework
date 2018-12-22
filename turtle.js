@@ -5,10 +5,8 @@ class Turtle {
         this.x = x;
         this.y = y;
         this.face = 'east';
-        this.coordinates = [];
-        this.coordinates.push([this.x, this.y])
-        
-   }
+        this.coordinates = [this.x, this.y];
+    }
 
    allPoints(){
        
