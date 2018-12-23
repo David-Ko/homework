@@ -9,6 +9,6 @@
     <%= form.text_field :email, class: "form-control" %>
     </div>
     <%= form.submit "Update", class: "btn btn-outline-primary"%>
-    <%= link_to("Change Password", edit_password_path(@user.id))%>
+    <%= link_to("Change Password", edit_password_path(@user.id), class: "btn btn-outline-primary")%>
 <% end %>
 </div>
