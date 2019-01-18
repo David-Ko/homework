@@ -51,7 +51,7 @@ function Hangman(){
     };
 
     let correctAnswerLength = 0
-
+    const winSound = () => new Audio(`sounds/dog-bark-4.wav`);
     function correctLetter(){
         for (let index = 0; index < secretWordLength; index ++){
             if (secretWord[index]===clickedLetter){
@@ -59,6 +59,7 @@ function Hangman(){
                 correctAnswerLength += 1;
             };
             if (correctAnswerLength === secretWordLength){
+                winSound().play();
                 setTimeout(function(){
                     alert("you won")
                     document.location.reload()
@@ -68,6 +69,7 @@ function Hangman(){
     };
 
     let pictureIndex = 0
+    const deadSound = () => new Audio(`sounds/small-explosion.wav`);
     function incorrectLetter(){
         let pictures = ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg','6.jpg']
         if (pictureIndex <= 4){
@@ -75,6 +77,7 @@ function Hangman(){
             document.querySelector("img").setAttribute("src", `${pictures[pictureIndex-1]}`)
         } else {
             document.querySelector("img").setAttribute("src", "6.jpg")
+            deadSound().play()
             setTimeout(function() {
                 alert("you died")
                 document.location.reload()
