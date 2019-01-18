@@ -59,8 +59,10 @@ function Hangman(){
                 correctAnswerLength += 1;
             };
             if (correctAnswerLength === secretWordLength){
-                alert("you won")
-                document.location.reload()
+                setTimeout(function(){
+                    alert("you won")
+                    document.location.reload()
+                }, 1500)
             }
         };
     };
@@ -73,8 +75,10 @@ function Hangman(){
             document.querySelector("img").setAttribute("src", `${pictures[pictureIndex-1]}`)
         } else {
             document.querySelector("img").setAttribute("src", "6.jpg")
-            alert("you died")
-            document.location.reload()
+            setTimeout(function() {
+                alert("you died")
+                document.location.reload()
+            }, 1000)
         };
     };
 
